@@ -1055,6 +1055,23 @@ if len(AZURE_CFG_ARRAY) > 0:
         if azure_model_name not in AVAIL_LLM_MODELS:
             AVAIL_LLM_MODELS += [azure_model_name]
 
+# -=-=-=-=-=-=- Ark模型对齐支持 -=-=-=-=-=-=-
+ark_models = list(filter(lambda s: s.startswith('ep-'), AVAIL_LLM_MODELS))
+if len(ark_models) > 0:
+    for ark_model in ark_models:
+        try:
+            model_info.update({
+                ark_model: {
+                    "fn_with_ui": chatgpt_ui,
+                    "fn_without_ui": chatgpt_noui,
+                    "endpoint": openai_endpoint,
+                    "max_token": 16385,
+                    "tokenizer": tokenizer_gpt35,
+                    "token_cnt": get_token_num_gpt35,
+                },
+            })
+        except:
+            print(trimmed_format_exc())
 
 # -=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=--=-=-=-=-=-=-=-=
 # -=-=-=-=-=-=-=-=-=- ☝️ 以上是模型路由 -=-=-=-=-=-=-=-=-=
@@ -1195,7 +1212,10 @@ def predict(inputs:str, llm_kwargs:dict, plugin_kwargs:dict, chatbot,
 
     inputs = apply_gpt_academic_string_mask(inputs, mode="show_llm")
 
-    method = model_info[llm_kwargs['llm_model']]["fn_with_ui"]  # 如果这里报错，检查config中的AVAIL_LLM_MODELS选项
+    try:
+        method = model_info[llm_kwargs['llm_model']]["fn_with_ui"]  # 如果这里报错，检查config中的AVAIL_LLM_MODELS选项
+    except Exception as e:
+        raise ValueError(f"模型选择错误，请检查配置文件: {llm_kwargs}\n,Model Info {model_info}, 错误信息: {e}")
 
     if additional_fn: # 根据基础功能区 ModelOverride 参数调整模型类型
         llm_kwargs, additional_fn, method = execute_model_override(llm_kwargs, additional_fn, method)

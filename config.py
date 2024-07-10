@@ -8,7 +8,7 @@
 """
 
 # [step 1]>> API_KEY = "sk-123456789xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx123456789"。极少数情况下，还需要填写组织（格式如org-123456789abcdefghijklmno的），请向下翻，找 API_ORG 设置项
-API_KEY = "此处填API密钥"    # 可同时填写多个API-KEY，用英文逗号分割，例如API_KEY = "sk-openaikey1,sk-openaikey2,fkxxxx-api2dkey3,azure-apikey4"
+API_KEY = "5f017bfa-83b0-46ee-ac8d-5909b8fb41af"    # 可同时填写多个API-KEY，用英文逗号分割，例如API_KEY = "sk-openaikey1,sk-openaikey2,fkxxxx-api2dkey3,azure-apikey4"
 
 
 # [step 2]>> 改为True应用代理，如果直接在海外服务器部署，此处不修改；如果使用本地或无地域限制的大模型时，此处也不需要修改
@@ -31,13 +31,8 @@ else:
     proxies = None
 
 # [step 3]>> 模型选择是 (注意: LLM_MODEL是默认选中的模型, 它*必须*被包含在AVAIL_LLM_MODELS列表中 )
-LLM_MODEL = "gpt-3.5-turbo-16k" # 可选 ↓↓↓
-AVAIL_LLM_MODELS = ["gpt-4-1106-preview", "gpt-4-turbo-preview", "gpt-4-vision-preview",
-                    "gpt-4o", "gpt-4-turbo", "gpt-4-turbo-2024-04-09",
-                    "gpt-3.5-turbo-1106", "gpt-3.5-turbo-16k", "gpt-3.5-turbo", "azure-gpt-3.5",
-                    "gpt-4", "gpt-4-32k", "azure-gpt-4", "glm-4", "glm-4v", "glm-3-turbo",
-                    "gemini-pro", "chatglm3"
-                    ]
+LLM_MODEL = "ep-20240709151536-xrgx5"  # 可选 ↓↓↓
+AVAIL_LLM_MODELS = ["ep-20240709151536-xrgx5", "ep-20240710151423-5pcg6"]
 # --- --- --- ---
 # P.S. 其他可用的模型还包括
 # AVAIL_LLM_MODELS = [
@@ -64,7 +59,7 @@ AVAIL_LLM_MODELS = ["gpt-4-1106-preview", "gpt-4-turbo-preview", "gpt-4-vision-p
 # 重新URL重新定向，实现更换API_URL的作用（高危设置! 常规情况下不要修改! 通过修改此设置，您将把您的API-KEY和对话隐私完全暴露给您设定的中间人！）
 # 格式: API_URL_REDIRECT = {"https://api.openai.com/v1/chat/completions": "在这里填写重定向的api.openai.com的URL"}
 # 举例: API_URL_REDIRECT = {"https://api.openai.com/v1/chat/completions": "https://reverse-proxy-url/v1/chat/completions", "http://localhost:11434/api/chat": "在这里填写您ollama的URL"}
-API_URL_REDIRECT = {}
+API_URL_REDIRECT = {"https://api.openai.com/v1/chat/completions": "https://ark.cn-beijing.volces.com/api/v3/chat/completions"}
 
 
 # 多线程函数插件中，默认允许多少路线程同时访问OpenAI。Free trial users的限制是每分钟3次，Pay-as-you-go users的限制是每分钟3500次
@@ -249,7 +244,7 @@ DOC2X_API_KEY = ""
 
 
 # 自定义API KEY格式
-CUSTOM_API_KEY_PATTERN = ""
+CUSTOM_API_KEY_PATTERN = "5f017bfa-83b0-46ee-ac8d-5909b8fb41af"
 
 
 # Google Gemini API-Key
