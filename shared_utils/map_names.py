@@ -4,16 +4,21 @@ mapping_dic = {
     # "zhipuai": "zhipuai（智谱GLM4超级模型🔥）",
     # "gpt-4-1106-preview": "gpt-4-1106-preview（新调优版本GPT-4🔥）",
     # "gpt-4-vision-preview": "gpt-4-vision-preview（识图模型GPT-4V）",
+    "ep-20240709151536-xrgx5": "豆包pro-128k",
+    "ep-20240710151423-5pcg6": "豆包pro-32k",
 }
 
 rev_mapping_dic = {}
 for k, v in mapping_dic.items():
     rev_mapping_dic[v] = k
 
-def map_model_to_friendly_names(m):
+def map_model_to_friendly_name(m):
     if m in mapping_dic:
         return mapping_dic[m]
     return m
+
+def map_models_to_friendly_names(models):
+    return [map_model_to_friendly_name(m) for m in models]
 
 def map_friendly_names_to_model(m):
     if m in rev_mapping_dic:

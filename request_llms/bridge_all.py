@@ -11,6 +11,7 @@
 import tiktoken, copy, re
 from functools import lru_cache
 from concurrent.futures import ThreadPoolExecutor
+from shared_utils.map_names import map_friendly_names_to_model
 from toolbox import get_conf, trimmed_format_exc, apply_gpt_academic_string_mask, read_one_api_model_name
 
 from .bridge_chatgpt import predict_no_ui_long_connection as chatgpt_noui
@@ -1213,6 +1214,7 @@ def predict(inputs:str, llm_kwargs:dict, plugin_kwargs:dict, chatbot,
     inputs = apply_gpt_academic_string_mask(inputs, mode="show_llm")
 
     try:
+        llm_kwargs['llm_model'] = map_friendly_names_to_model(llm_kwargs['llm_model'])
         method = model_info[llm_kwargs['llm_model']]["fn_with_ui"]  # 如果这里报错，检查config中的AVAIL_LLM_MODELS选项
     except Exception as e:
         raise ValueError(f"模型选择错误，请检查配置文件: {llm_kwargs}\n,Model Info {model_info}, 错误信息: {e}")
@@ -1221,4 +1223,3 @@ def predict(inputs:str, llm_kwargs:dict, plugin_kwargs:dict, chatbot,
         llm_kwargs, additional_fn, method = execute_model_override(llm_kwargs, additional_fn, method)
 
     yield from method(inputs, llm_kwargs, plugin_kwargs, chatbot, history, system_prompt, stream, additional_fn)
-
