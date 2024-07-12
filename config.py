@@ -249,7 +249,7 @@ DOC2X_API_KEY = ""
 
 
 # 自定义API KEY格式
-CUSTOM_API_KEY_PATTERN = "5f017bfa-83b0-46ee-ac8d-5909b8fb41af"
+CUSTOM_API_KEY_PATTERN = ""
 
 
 # Google Gemini API-Key
