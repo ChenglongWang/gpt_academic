@@ -17,8 +17,7 @@ def get_core_functions():
                             text_show_english=
                                 r"Below is a paragraph from an academic paper. Polish the writing to meet the academic style, "
                                 r"improve the spelling, grammar, clarity, concision and overall readability. When necessary, rewrite the whole sentence. "
-                                r"Firstly, you should provide the polished paragraph. "
-                                r"Secondly, you should list all your modification in markdown table.",
+                                r"Please list all your modification in markdown table.",
                             text_show_chinese=
                                 r"作为一名中文学术论文写作改进助理，你的任务是改进所提供文本的拼写、语法、清晰、简洁和整体可读性，"
                                 r"同时分解长句，减少重复，并提供改进建议。请先提供文本的更正版本，然后在markdown表格中列出修改的内容，并给出修改的理由:"
