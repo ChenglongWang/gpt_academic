@@ -1,4 +1,5 @@
 import os, json; os.environ['no_proxy'] = '*' # 避免代理网络产生意外污染
+from shared_utils.map_names import map_model_to_friendly_name
 
 help_menu_description = \
 """Github源代码开源和更新[地址🚀](https://github.com/binary-husky/gpt_academic),
@@ -256,7 +257,7 @@ def main():
 
         # 模型切换时的回调
         def on_md_dropdown_changed(k):
-            return {chatbot: gr.update(label="当前模型："+k)}
+            return {chatbot: gr.update(label="当前模型：" + map_model_to_friendly_name(k))}
         md_dropdown.select(on_md_dropdown_changed, [md_dropdown], [chatbot])
 
         # 主题修改

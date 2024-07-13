@@ -467,14 +467,13 @@ def generate_payload(inputs:str, llm_kwargs:dict, history:list, system_prompt:st
             })
         messages.append(what_i_ask_now)
 
-
-    model = llm_kwargs['llm_model']
-    if llm_kwargs['llm_model'].startswith('api2d-'):
+    # model = llm_kwargs['llm_model']
+    if (model := llm_kwargs['llm_model']).startswith('api2d-'):
         model = llm_kwargs['llm_model'][len('api2d-'):]
-    if llm_kwargs['llm_model'].startswith('one-api-'):
+    if model.startswith('one-api-'):
         model = llm_kwargs['llm_model'][len('one-api-'):]
         model, _ = read_one_api_model_name(model)
-    if llm_kwargs['llm_model'].startswith('vllm-'):
+    if model.startswith('vllm-'):
         model = llm_kwargs['llm_model'][len('vllm-'):]
         model, _ = read_one_api_model_name(model)
     if model == "gpt-3.5-random": # 随机选择, 绕过openai访问频率限制
