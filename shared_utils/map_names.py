@@ -1,12 +1,7 @@
 import re
-mapping_dic = {
-    # "qianfan": "qianfan（文心一言大模型）",
-    # "zhipuai": "zhipuai（智谱GLM4超级模型🔥）",
-    # "gpt-4-1106-preview": "gpt-4-1106-preview（新调优版本GPT-4🔥）",
-    # "gpt-4-vision-preview": "gpt-4-vision-preview（识图模型GPT-4V）",
-    "ep-20240709151536-xrgx5": "豆包pro-128k",
-    "ep-20240710151423-5pcg6": "豆包pro-32k",
-}
+from toolbox import get_conf
+
+mapping_dic = get_conf("MODEL_NAME_MAPPING")
 
 rev_mapping_dic = {}
 for k, v in mapping_dic.items():

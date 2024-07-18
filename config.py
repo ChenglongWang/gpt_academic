@@ -306,6 +306,8 @@ PLUGIN_HOT_RELOAD = False
 NUM_CUSTOM_BASIC_BTN = 4
 
 
+# 自定义模型名字映射
+MODEL_NAME_MAPPING = {}
 
 """
 --------------- 配置关联关系说明 ---------------
